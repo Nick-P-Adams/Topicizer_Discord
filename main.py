@@ -1,7 +1,5 @@
-import Topicizer_Bot
+from Topicizer import TopicizerBot
 
 if __name__ == '__main__':
-    Topicizer_Bot
-
-
-
+    bot = TopicizerBot()
+    bot.run()
