@@ -1,12 +1,17 @@
 from TopicizerClient import TopicizerClient
+from discord.ext import commands
+from Settings import Settings
 import dotenv
-import os
+import random
 
-class TopicizerBot:
+class Topicizer:
     def __init__(self):
         dotenv.load_dotenv()
-        self.TOKEN = os.getenv("DISCORD_TOKEN")
         self.client = TopicizerClient()
+        self.bot = commands.Bot(command_prefix='!')
 
-    def run(self):
-        self.client.run(self.TOKEN)
+    def run_client(self):
+        self.client.run(Settings.TOKEN())
+
+    def run_bot(self):
+        self.bot.run(Settings.TOKEN())
