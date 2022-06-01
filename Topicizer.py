@@ -1,37 +1,32 @@
-import TopicizerCommands
 from discord.ext import commands
+from FileIO import FileIO
 from Settings import Settings
-import json
 import dotenv
 import random
 
 class Topicizer:
     def __init__(self):
         dotenv.load_dotenv()
-        self.bot = commands.Bot(command_prefix='!')
+        self.bot = self.spawn_bot()
 
-        self.topics = {"Science" : {1 : "Anti-Gravity", 2 : "Moon Landing"}, "History" : {1 : "Battle of 1812", 2 : "Roman Empire"}}
-        self.trivia = {}
-        self.current_category = ""
-        self.current_topic = ""
-        self.current_trivia = ""
-        self.answer = ""
+        self.__topics = {}
+        self.__trivia = {}
+        self.__current_category = ""
+        self.__current_topic = ""
+        self.__current_trivia = ""
+        self.__answer = ""
 
-    #def load(self):
+    def load(self):
+        self.__topics = FileIO.load_topics()
+        self.__trivia = FileIO.load_trivia()
 
     def save(self):
-        with open("Topics.json", "w") as out_file:
-            json.dump(self.topics, out_file)
-
-        with open("Trivia.json", "w") as out_file:
-            for dict in self.trivia:
-                json.dump(dict, out_file)
+        FileIO.save_topics(self.__topics)
+        FileIO.save_trivia(self.__trivia)
 
     def spawn_bot(self):
-        return self.bot
+        bot = commands.Bot(command_prefix='!')
+        return bot
 
     def run_bot(self):
         self.bot.run(Settings.TOKEN())
-
-    def commands(self):
-        TopicizerCommands.TopicizerCommands(self.bot)
