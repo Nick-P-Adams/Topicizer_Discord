@@ -1,5 +1,5 @@
-from Topicizer import Topicizer
-from TopicizerCommands import TopicizerCommands
+from topicizer.Topicizer import Topicizer
+from topicizer.TopicizerCommands import TopicizerCommands
 
 if __name__ == '__main__':
     topicizer = Topicizer()
