@@ -1,3 +1,4 @@
+#Example of creating custom client (Will come back to if needed)
 import discord
 
 class TopicizerClient(discord.Client):
