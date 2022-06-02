@@ -17,10 +17,3 @@ class Settings(Enum):
         except:
             print("ERROR: Topic File Not Found!")
 
-    @staticmethod
-    def TriviaFile():
-        try:
-            return os.getenv("TRIVIA_FILE_PATH")
-        except:
-            print("ERROR: Trivia File Not Found!")
-
